@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-43428941-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>[ProtoBuf] 初次見面 | 饅頭小舖 | 科技饅頭的開發筆記本</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ProtoBuf,serialize,deserialize">
+    <meta name="description" content="ProtoBuf 初次見面什麼是ProtoBuf？這是一個Google所開發出的資料儲存結構或物件（反）序列的結構（如 JOSN、XML、msgpack等），在官方網站的介紹上有這麼一段：  Protocol buffers are Google’s language-neutral,platform-neutral, extensible mechanism for serializing st">
+<meta name="keywords" content="ProtoBuf,serialize,deserialize">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[ProtoBuf] 初次見面">
+<meta property="og:url" content="http://yi-shiuan.github.io/2016/10/05/2016-10-06-protobuf初次見面/index.html">
+<meta property="og:site_name" content="饅頭小舖">
+<meta property="og:description" content="ProtoBuf 初次見面什麼是ProtoBuf？這是一個Google所開發出的資料儲存結構或物件（反）序列的結構（如 JOSN、XML、msgpack等），在官方網站的介紹上有這麼一段：  Protocol buffers are Google’s language-neutral,platform-neutral, extensible mechanism for serializing st">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://iborbw.dm2301.livefilestore.com/y3mwZSHpblZIjBxQ2VXBmnVHV8MUQSMdTVoW4vffVGKs4JCG91fDL-ukzA4rTxhIfuV7fn2vuc2A04qIdxM3phpxfINzJVERuqtJVaGvm7yXCmCQdd0P6qq8Ai9BxYg7deUDWSF4oqEwKg7SiiNF1V5UW52gVN2t-ob2I_IRQ3q73Y?width=1318&height=384&cropmode=none">
+<meta property="og:updated_time" content="2018-01-03T03:26:48.914Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[ProtoBuf] 初次見面">
+<meta name="twitter:description" content="ProtoBuf 初次見面什麼是ProtoBuf？這是一個Google所開發出的資料儲存結構或物件（反）序列的結構（如 JOSN、XML、msgpack等），在官方網站的介紹上有這麼一段：  Protocol buffers are Google’s language-neutral,platform-neutral, extensible mechanism for serializing st">
+<meta name="twitter:image" content="https://iborbw.dm2301.livefilestore.com/y3mwZSHpblZIjBxQ2VXBmnVHV8MUQSMdTVoW4vffVGKs4JCG91fDL-ukzA4rTxhIfuV7fn2vuc2A04qIdxM3phpxfINzJVERuqtJVaGvm7yXCmCQdd0P6qq8Ai9BxYg7deUDWSF4oqEwKg7SiiNF1V5UW52gVN2t-ob2I_IRQ3q73Y?width=1318&height=384&cropmode=none">
+    
+        <link rel="alternate" type="application/atom+xml" title="饅頭小舖" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=0.4.6">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/myimage.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yi-Shiuan</h5>
+          <a href="mailto:amour99520@gmail.com" title="amour99520@gmail.com" class="mail">amour99520@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首頁
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章庫
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yi-Shiuan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.facebook.com/amour99520" target="_blank" >
+                <i class="icon icon-lg icon-facebook-official"></i>
+                Facebook
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-anchor"></i>
+                友站連結
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://study4.tw" target="_blank" >
+                <i class="icon icon-lg icon-envira"></i>
+                Study4.TW
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">[ProtoBuf] 初次見面</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[ProtoBuf] 初次見面</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-10-05T21:30:16.000Z" itemprop="datePublished" class="page-time">
+  2016-10-06
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ProtoBuf/">ProtoBuf</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ProtoBuf-初次見面"><span class="post-toc-number">1.</span> <span class="post-toc-text">ProtoBuf 初次見面</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什麼是ProtoBuf？"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">什麼是ProtoBuf？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ProtoBuf-優點"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">ProtoBuf 優點</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ProtoBuf-缺點"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">ProtoBuf 缺點</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在-C-中使用-ProtoBuf"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">在 C# 中使用 ProtoBuf</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定義方式"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">定義方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Attribute"><span class="post-toc-number">1.2.1.1.</span> <span class="post-toc-text">Attribute</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#proto檔案"><span class="post-toc-number">1.2.1.2.</span> <span class="post-toc-text">.proto檔案</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Runtime-定義"><span class="post-toc-number">1.2.1.3.</span> <span class="post-toc-text">Runtime 定義</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#總結"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">總結</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#參考資料"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">參考資料</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-2016-10-06-protobuf初次見面"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[ProtoBuf] 初次見面</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-10-06 05:30:16" datetime="2016-10-05T21:30:16.000Z"  itemprop="datePublished">2016-10-06</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ProtoBuf/">ProtoBuf</a></li></ul>
+
+
+
+            
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="ProtoBuf-初次見面"><a href="#ProtoBuf-初次見面" class="headerlink" title="ProtoBuf 初次見面"></a>ProtoBuf 初次見面</h1><h2 id="什麼是ProtoBuf？"><a href="#什麼是ProtoBuf？" class="headerlink" title="什麼是ProtoBuf？"></a>什麼是ProtoBuf？</h2><p>這是一個Google所開發出的資料儲存結構或物件（反）序列的結構（如 JOSN、XML、msgpack等），在官方網站的介紹上有這麼一段：</p>
+<blockquote>
+<p>Protocol buffers are Google’s language-neutral,<br>platform-neutral, extensible mechanism for serializing structured data<br>– think XML, but smaller, faster, and simpler.<br>You define how you want your data to be structured once,<br>then you can use special generated source code to easily write<br>and read your structured data to and from a variety of data streams and using a variety of languages. </p>
+<p style="text-align:right"> from <a href="https://developers.google.com/protocol-buffers/" target="_blank">  https://developers.google.com/protocol-buffers/</a></p>
+
+</blockquote>
+<p>ProtoBuf支援各種主流的語言(ex: C#, C++, JAVA等)，<br>在官方中的<a href="https://github.com/google/protobuf" target="_blank" rel="noopener">GitHub</a>上有目前支援的語言實做，或是Third-party搜尋相關的實做套件。</p>
+<h3 id="ProtoBuf-優點"><a href="#ProtoBuf-優點" class="headerlink" title="ProtoBuf 優點"></a>ProtoBuf 優點</h3><ul>
+<li>(反)序列<strong>速度快</strong>，方便於網路傳輸</li>
+<li>產出格式<strong>內容小</strong>，方便存放至檔案或其他Service</li>
+</ul>
+<h3 id="ProtoBuf-缺點"><a href="#ProtoBuf-缺點" class="headerlink" title="ProtoBuf 缺點"></a>ProtoBuf 缺點</h3><ul>
+<li>二進位格式，難以閱讀</li>
+<li>使用上必須先作定義，需要先設定.proto檔案</li>
+</ul>
+<h2 id="在-C-中使用-ProtoBuf"><a href="#在-C-中使用-ProtoBuf" class="headerlink" title="在 C# 中使用 ProtoBuf"></a>在 C# 中使用 ProtoBuf</h2><p>在專案中我是使用third-party的套件，<a href="https://www.nuget.org/packages/protobuf-net" target="_blank" rel="noopener">ProtoBuf-net</a><br>套件可以在nuget上找到，會選擇這個套件主要是因為在使用上較為簡便，也支援較多的設定的方式來做資料，設定的方式<br>稍後會有比較詳細一些的介紹。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://iborbw.dm2301.livefilestore.com/y3mwZSHpblZIjBxQ2VXBmnVHV8MUQSMdTVoW4vffVGKs4JCG91fDL-ukzA4rTxhIfuV7fn2vuc2A04qIdxM3phpxfINzJVERuqtJVaGvm7yXCmCQdd0P6qq8Ai9BxYg7deUDWSF4oqEwKg7SiiNF1V5UW52gVN2t-ob2I_IRQ3q73Y?width=1318&height=384&cropmode=none" alt="ProtoBuf-net" title="">
+                </div>
+                <div class="image-caption">ProtoBuf-net</div>
+            </figure>
+<h3 id="定義方式"><a href="#定義方式" class="headerlink" title="定義方式"></a>定義方式</h3><p>ProtoBuf-net設定的方式支援了以下三種方式</p>
+<h4 id="Attribute"><a href="#Attribute" class="headerlink" title="Attribute"></a>Attribute</h4><p>這個方式，個人認為是一個較好的設定方式，</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">ProtoContract</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestClass</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">ProtoMember(1)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> TestA &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">ProtoMember(2)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> TestB &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">ProtoMember(3)</span>]</span><br><span class="line">    <span class="keyword">public</span> TestClassB TestC &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="meta">ProtoContract</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestClassB</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這一個設定方式可以修改data model同時修改 Attribute 這樣在團隊使用上可以避免修改data model後<br>也可馬上維護protobuf的設定，避免在runtime時因為設定上造成exception。</p>
+<h4 id="proto檔案"><a href="#proto檔案" class="headerlink" title=".proto檔案"></a>.proto檔案</h4><p>這一個方式是官方的標準設定，這個需要額外產生一份.proto檔案，定義方式與格式可參考<br><a href="https://developers.google.com/protocol-buffers/docs/csharptutorial" target="_blank" rel="noopener">官方網站</a><br>的設定。</p>
+<p>這一個方式因為多產生了一個.proto的檔案，在修改data model後，必須要再額外修改.proto的檔案，<br>有時候在開發上會有不一致的情況；在使用上與設定上也相對較為複雜。</p>
+<h4 id="Runtime-定義"><a href="#Runtime-定義" class="headerlink" title="Runtime 定義"></a>Runtime 定義</h4><p>這是在Application執行期間產生一份 RuntimeTypeModel，在Serializer的時候會以這一份RuntimeTypeModel為你的<br>data model做序列化，以下提供語法參考設定方式</p>
+<p>這一個方式會將原先定義覆蓋</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> metaType = RuntimeTypeModel.Default.Add(<span class="keyword">typeof</span>(TestClassA), <span class="literal">true</span>);</span><br><span class="line">metaType.AddSubType(<span class="number">100</span>, <span class="keyword">typeof</span>(TestA));</span><br><span class="line"></span><br><span class="line">RuntimeTypeModel.Default.Add(<span class="keyword">typeof</span>(TestA), <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<p>這一個會複寫(或新增)原先的定義<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> metaType = RuntimeTypeModel.Default;</span><br><span class="line"><span class="keyword">var</span> testA = metaType[<span class="keyword">typeof</span>(TestClassA)];</span><br><span class="line">testA.AddSubType(<span class="number">100</span>, <span class="keyword">typeof</span>(TestA));</span><br><span class="line">metaType.Add(<span class="keyword">typeof</span>(TestA), <span class="literal">false</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>目前會採用ProtoBuf序列化是因為先前使用JSON有效能上的問題與在存取Redis上產生較高的延遲，所以改採用<br>ProtoBuf來作為資料序列化與存放到Redis的主要格式。雖然在閱讀上需要自己寫小工具做轉譯，但在一般情況<br>擁有較好的效能展現。</p>
+<p>其他更詳細的介紹可觀看<br><a href="https://github.com/mgravell/protobuf-net#advanced-subjects" target="_blank" rel="noopener">protobuf-net 官方GitHub</a></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a href="http://larrynung.github.io/2016/08/23/protobuf-net-Serialize-DeSerialize-data/" target="_blank" rel="noopener">Level up - protobuf-net - Serialize/DeSerialize data</a></p>
+<p><a href="https://github.com/mgravell/protobuf-net" target="_blank" rel="noopener">protobuf-net 官方GitHub</a></p>
+<p><a href="https://github.com/google/protobuf" target="_blank" rel="noopener">Google protobuf</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-01-03T03:26:48.914Z" itemprop="dateUpdated">2018-01-03 11:26:48</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="http://yi-shiuan.github.io">
+            <img src="/img/myimage.jpg" alt="Yi-Shiuan">
+            Yi-Shiuan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ProtoBuf/">ProtoBuf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deserialize/">deserialize</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/serialize/">serialize</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yi-shiuan.github.io/2016/10/05/2016-10-06-protobuf初次見面/&title=《[ProtoBuf] 初次見面》 — 饅頭小舖&pic=http://yi-shiuan.github.io/img/myimage.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yi-shiuan.github.io/2016/10/05/2016-10-06-protobuf初次見面/&title=《[ProtoBuf] 初次見面》 — 饅頭小舖&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yi-shiuan.github.io/2016/10/05/2016-10-06-protobuf初次見面/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[ProtoBuf] 初次見面》 — 饅頭小舖&url=http://yi-shiuan.github.io/2016/10/05/2016-10-06-protobuf初次見面/&via=http://yi-shiuan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yi-shiuan.github.io/2016/10/05/2016-10-06-protobuf初次見面/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/10/07/[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/08/04/2016-08-04-型態轉換的性能(long.parse vs ToString)/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">型態轉換的性能(long.parse vs ToString)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'yi-shiuan';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Yi-Shiuan &copy; 2018</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yi-shiuan.github.io/2016/10/05/2016-10-06-protobuf初次見面/&title=《[ProtoBuf] 初次見面》 — 饅頭小舖&pic=http://yi-shiuan.github.io/img/myimage.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yi-shiuan.github.io/2016/10/05/2016-10-06-protobuf初次見面/&title=《[ProtoBuf] 初次見面》 — 饅頭小舖&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yi-shiuan.github.io/2016/10/05/2016-10-06-protobuf初次見面/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[ProtoBuf] 初次見面》 — 饅頭小舖&url=http://yi-shiuan.github.io/2016/10/05/2016-10-06-protobuf初次見面/&via=http://yi-shiuan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yi-shiuan.github.io/2016/10/05/2016-10-06-protobuf初次見面/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yi-shiuan.github.io/2016/10/05/2016-10-06-protobuf初次見面/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=0.4.6"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=0.4.6" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-43428941-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！ | 饅頭小舖 | 科技饅頭的開發筆記本</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ProtoBuf,serialize,deserialize">
+    <meta name="description" content="ProtoBuf這一篇應該是我ProtoBuf的系列文章第二篇，上一篇只簡單說了一些安裝方式與一些定義檔的設定根本就不知道該如何使用這一個好用的序列化工具。依樣會是使用protobuf-net這一個套件來做一個簡單的紀錄。 ProtoBuf 序列化在使用 ProtoBuf 的第一步就必須了解 Stream 的資料格式，因為在(反)序列化的過程中，預設都是使用 Stream 作為媒介。序列化的部份是">
+<meta name="keywords" content="ProtoBuf,serialize,deserialize">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！">
+<meta property="og:url" content="http://yi-shiuan.github.io/2016/10/07/[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！/index.html">
+<meta property="og:site_name" content="饅頭小舖">
+<meta property="og:description" content="ProtoBuf這一篇應該是我ProtoBuf的系列文章第二篇，上一篇只簡單說了一些安裝方式與一些定義檔的設定根本就不知道該如何使用這一個好用的序列化工具。依樣會是使用protobuf-net這一個套件來做一個簡單的紀錄。 ProtoBuf 序列化在使用 ProtoBuf 的第一步就必須了解 Stream 的資料格式，因為在(反)序列化的過程中，預設都是使用 Stream 作為媒介。序列化的部份是">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2018-01-03T03:26:48.914Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！">
+<meta name="twitter:description" content="ProtoBuf這一篇應該是我ProtoBuf的系列文章第二篇，上一篇只簡單說了一些安裝方式與一些定義檔的設定根本就不知道該如何使用這一個好用的序列化工具。依樣會是使用protobuf-net這一個套件來做一個簡單的紀錄。 ProtoBuf 序列化在使用 ProtoBuf 的第一步就必須了解 Stream 的資料格式，因為在(反)序列化的過程中，預設都是使用 Stream 作為媒介。序列化的部份是">
+    
+        <link rel="alternate" type="application/atom+xml" title="饅頭小舖" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=0.4.6">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/myimage.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yi-Shiuan</h5>
+          <a href="mailto:amour99520@gmail.com" title="amour99520@gmail.com" class="mail">amour99520@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首頁
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章庫
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yi-Shiuan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.facebook.com/amour99520" target="_blank" >
+                <i class="icon icon-lg icon-facebook-official"></i>
+                Facebook
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-anchor"></i>
+                友站連結
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://study4.tw" target="_blank" >
+                <i class="icon icon-lg icon-envira"></i>
+                Study4.TW
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-10-07T14:44:15.000Z" itemprop="datePublished" class="page-time">
+  2016-10-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ProtoBuf/">ProtoBuf</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ProtoBuf"><span class="post-toc-number">1.</span> <span class="post-toc-text">ProtoBuf</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ProtoBuf-序列化"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">ProtoBuf 序列化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Simple-Code-1-序列化"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">Simple Code 1 - 序列化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Simple-Code-2-Serialize-to-byte-array-and-string"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">Simple Code 2 - Serialize to byte array and string</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ProtoBuf-反序列化"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">ProtoBuf 反序列化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Simple-Code-3-反序列化"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">Simple Code 3 - 反序列化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Simple-Code-4-針對-Byte-array-and-string-deserialize"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">Simple Code 4 - 針對 Byte array and string deserialize</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-10-07 22:44:15" datetime="2016-10-07T14:44:15.000Z"  itemprop="datePublished">2016-10-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ProtoBuf/">ProtoBuf</a></li></ul>
+
+
+
+            
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="ProtoBuf"><a href="#ProtoBuf" class="headerlink" title="ProtoBuf"></a>ProtoBuf</h1><p>這一篇應該是我ProtoBuf的系列文章第二篇，上一篇只簡單說了一些安裝方式與一些定義檔<br>的設定根本就不知道該如何使用這一個好用的序列化工具。依樣會是使用protobuf-net<br>這一個套件來做一個簡單的紀錄。</p>
+<h2 id="ProtoBuf-序列化"><a href="#ProtoBuf-序列化" class="headerlink" title="ProtoBuf 序列化"></a>ProtoBuf 序列化</h2><p>在使用 ProtoBuf 的第一步就必須了解 Stream 的資料格式，因為在(反)序列化<br>的過程中，預設都是使用 Stream 作為媒介。序列化的部份是使用 Serializer.Serialize<br>這個方法來處理。</p>
+<h3 id="Simple-Code-1-序列化"><a href="#Simple-Code-1-序列化" class="headerlink" title="Simple Code 1 - 序列化"></a>Simple Code 1 - 序列化</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> SerializeToStream&lt;T&gt;(T data, Stream stream)</span><br><span class="line">&#123;</span><br><span class="line">    Serializer.Serialize(stream, data)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">using</span> (<span class="keyword">var</span> stream = <span class="keyword">new</span> MemoryStream())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.SerializeToStream&lt;<span class="keyword">object</span>&gt;(data, stream);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主要原因是若Stream關閉後就無法做任何的操作，所以交由外部來控制Stream的資源初始與回收。<br>可以在序列化成為 Array 或 String 的格式。</p>
+<h3 id="Simple-Code-2-Serialize-to-byte-array-and-string"><a href="#Simple-Code-2-Serialize-to-byte-array-and-string" class="headerlink" title="Simple Code 2 - Serialize to byte array and string"></a>Simple Code 2 - Serialize to byte array and string</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">byte</span>[] SerializeToBytes&lt;T&gt;(T data)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">byte</span>[] result;</span><br><span class="line">    <span class="keyword">using</span> (<span class="keyword">var</span> stream = <span class="keyword">new</span> MemoryStream())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.SerializeToStream(data, stream);</span><br><span class="line">        result = stream.ToArray();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> SerializeToString&lt;T&gt;(T data)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">string</span> result;</span><br><span class="line">    <span class="keyword">using</span> (<span class="keyword">var</span> stream = <span class="keyword">new</span> MemoryStream())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.SerializeToStream(data, stream);</span><br><span class="line">        result = Encoding.ASCII.GetString(stream.ToArray());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Format 成 String 我是採用ASCII的編碼方式，讓他出來會像16進位的感覺。</p>
+<blockquote>
+<p>也可以使用 Convert.ToBase64String(stream.ToArray()); 產生文字資料</p>
+</blockquote>
+<h2 id="ProtoBuf-反序列化"><a href="#ProtoBuf-反序列化" class="headerlink" title="ProtoBuf 反序列化"></a>ProtoBuf 反序列化</h2><p>在反序列化的部分也是預設採用 Stream 的資料格式來處理，</p>
+<h3 id="Simple-Code-3-反序列化"><a href="#Simple-Code-3-反序列化" class="headerlink" title="Simple Code 3 - 反序列化"></a>Simple Code 3 - 反序列化</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> T SerializeToStream&lt;T&gt;(Stream stream)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> Serializer.Deserialize&lt;T&gt;(stream, data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Simple-Code-4-針對-Byte-array-and-string-deserialize"><a href="#Simple-Code-4-針對-Byte-array-and-string-deserialize" class="headerlink" title="Simple Code 4 - 針對 Byte array and string deserialize"></a>Simple Code 4 - 針對 Byte array and string deserialize</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> T DeSerializeFromBytes&lt;T&gt;(<span class="keyword">byte</span>[] data)</span><br><span class="line">&#123;</span><br><span class="line">    T result;</span><br><span class="line">    <span class="keyword">using</span> (<span class="keyword">var</span> stream = <span class="keyword">new</span> MemoryStream(data))</span><br><span class="line">    &#123;</span><br><span class="line">        stream.Seek(<span class="number">0</span>, SeekOrigin.Begin);</span><br><span class="line">        result = <span class="keyword">this</span>.DeSerializeFromStream&lt;T&gt;(stream);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> T DeSerializeFromString&lt;T&gt;(<span class="keyword">string</span> data)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.DeSerializeFromBytes&lt;T&gt;(Encoding.ASCII.GetBytes(data));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注： 若string是使用base64字元輸出，那麼在deserialize時就必須使用<br>Convert.FromBase64String(data) 處理</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-01-03T03:26:48.914Z" itemprop="dateUpdated">2018-01-03 11:26:48</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="http://yi-shiuan.github.io">
+            <img src="/img/myimage.jpg" alt="Yi-Shiuan">
+            Yi-Shiuan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ProtoBuf/">ProtoBuf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deserialize/">deserialize</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/serialize/">serialize</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yi-shiuan.github.io/2016/10/07/[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！/&title=《[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！》 — 饅頭小舖&pic=http://yi-shiuan.github.io/img/myimage.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yi-shiuan.github.io/2016/10/07/[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！/&title=《[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！》 — 饅頭小舖&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yi-shiuan.github.io/2016/10/07/[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！》 — 饅頭小舖&url=http://yi-shiuan.github.io/2016/10/07/[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！/&via=http://yi-shiuan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yi-shiuan.github.io/2016/10/07/[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/10/05/2016-10-06-protobuf初次見面/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">[ProtoBuf] 初次見面</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'yi-shiuan';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Yi-Shiuan &copy; 2018</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yi-shiuan.github.io/2016/10/07/[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！/&title=《[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！》 — 饅頭小舖&pic=http://yi-shiuan.github.io/img/myimage.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yi-shiuan.github.io/2016/10/07/[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！/&title=《[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！》 — 饅頭小舖&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yi-shiuan.github.io/2016/10/07/[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！》 — 饅頭小舖&url=http://yi-shiuan.github.io/2016/10/07/[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！/&via=http://yi-shiuan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yi-shiuan.github.io/2016/10/07/[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yi-shiuan.github.io/2016/10/07/[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=0.4.6"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=0.4.6" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
