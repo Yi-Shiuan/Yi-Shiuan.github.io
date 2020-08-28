@@ -1,2 +1,2 @@
 (window.webpackJsonp=window.webpackJsonp||[]).push([[8],{"i6+/":function(e,a,t){"use strict";t.r(a);var n=t("Hesl"),l=t("HHUu"),c=t("q1tI"),i=t.n(c);a.default=function(e){return void 0===e.data?i.a.createElement(n.a,null):i.a.createElement(n.a,{title:"失聯！"},i.a.createElement("div",{className:l.gPl20Lg}))}}}]);
-//# sourceMappingURL=component---src-pages-404-tsx-80003289c00c3da48c06.js.map
+//# sourceMappingURL=component---src-pages-404-tsx-6da80e954163ec6d9a12.js.map
