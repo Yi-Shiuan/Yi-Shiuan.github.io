@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 2.24.53"/><title data-react-helmet="true"></title><link as="script" rel="preload" href="/webpack-runtime-f2e003e6be60fc7aa098.js"/><link as="script" rel="preload" href="/framework-fca5a6c89ebf46562859.js"/><link as="script" rel="preload" href="/app-c37cb832fa2bf360a726.js"/><link as="script" rel="preload" href="/component---src-posts-protobuf-first-meet-protobuf-first-meet-mdx-5e0341cde81eb8187b21.js"/><link as="fetch" rel="preload" href="/page-data/protobuf-first-meet/protobuf-first-meet/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><h1>ProtoBuf 初次見面</h1><h2>什麼是ProtoBuf？</h2><p>這是一個Google所開發出的資料儲存結構或物件（反）序列的結構（如 JOSN、XML、msgpack等），在官方網站的介紹上有這麼一段：</p><blockquote><p>Protocol buffers are Google&#x27;s language-neutral,
+platform-neutral, extensible mechanism for serializing structured data
+– think XML, but smaller, faster, and simpler.
+You define how you want your data to be structured once,
+then you can use special generated source code to easily write
+and read your structured data to and from a variety of data streams and using a variety of languages.
+<p style="text-align:right">from <a href="https://developers.google.com/protocol-buffers/" target="_blank"><a href="https://developers.google.com/protocol-buffers/">https://developers.google.com/protocol-buffers/</a></a></p></p></blockquote><p>ProtoBuf支援各種主流的語言(ex: C#, C++, JAVA等)，
+在官方中的<a href="https://github.com/google/protobuf">GitHub</a>上有目前支援的語言實做，或是Third-party搜尋相關的實做套件。</p><h3>ProtoBuf 優點</h3><ul><li>(反)序列<strong>速度快</strong>，方便於網路傳輸</li><li>產出格式<strong>內容小</strong>，方便存放至檔案或其他Service</li></ul><h3>ProtoBuf 缺點</h3><ul><li>二進位格式，難以閱讀</li><li>使用上必須先作定義，需要先設定.proto檔案</li></ul><h2>在 C# 中使用 ProtoBuf</h2><p>在專案中我是使用third-party的套件，<a href="https://www.nuget.org/packages/protobuf-net">ProtoBuf-net</a>
+套件可以在nuget上找到，會選擇這個套件主要是因為在使用上較為簡便，也支援較多的設定的方式來做資料，設定的方式
+稍後會有比較詳細一些的介紹。</p><h3>定義方式</h3><p>ProtoBuf-net設定的方式支援了以下三種方式</p><h4>Attribute</h4><p>這個方式，個人認為是一個較好的設定方式，</p><pre><code class="language-cs">[ProtoContract]
+public class TestClass
+{
+    [ProtoMember(1)]
+    public int TestA { get; set; }
+
+    [ProtoMember(2)]
+    public string TestB { get; set; }
+
+    [ProtoMember(3)]
+    public TestClassB TestC { get; set; }
+}
+
+[ProtoContract]
+public class TestClassB
+{
+    ...
+}
+</code></pre><p>這一個設定方式可以修改data model同時修改 Attribute 這樣在團隊使用上可以避免修改data model後
+也可馬上維護protobuf的設定，避免在runtime時因為設定上造成exception。</p><h4>.proto檔案</h4><p>這一個方式是官方的標準設定，這個需要額外產生一份.proto檔案，定義方式與格式可參考
+<a href="https://developers.google.com/protocol-buffers/docs/csharptutorial">官方網站</a>
+的設定。</p><p>這一個方式因為多產生了一個.proto的檔案，在修改data model後，必須要再額外修改.proto的檔案，
+有時候在開發上會有不一致的情況；在使用上與設定上也相對較為複雜。</p><h4>Runtime 定義</h4><p>這是在Application執行期間產生一份 RuntimeTypeModel，在Serializer的時候會以這一份RuntimeTypeModel為你的
+data model做序列化，以下提供語法參考設定方式</p><p>這一個方式會將原先定義覆蓋</p><pre><code class="language-cs">    var metaType = RuntimeTypeModel.Default.Add(typeof(TestClassA), true);
+    metaType.AddSubType(100, typeof(TestA));
+
+    RuntimeTypeModel.Default.Add(typeof(TestA), false);
+</code></pre><p>這一個會複寫(或新增)原先的定義</p><pre><code class="language-cs">    var metaType = RuntimeTypeModel.Default;
+    var testA = metaType[typeof(TestClassA)];
+    testA.AddSubType(100, typeof(TestA));
+    metaType.Add(typeof(TestA), false);
+</code></pre><h2>總結</h2><p>目前會採用ProtoBuf序列化是因為先前使用JSON有效能上的問題與在存取Redis上產生較高的延遲，所以改採用
+ProtoBuf來作為資料序列化與存放到Redis的主要格式。雖然在閱讀上需要自己寫小工具做轉譯，但在一般情況
+擁有較好的效能展現。</p><p>其他更詳細的介紹可觀看
+<a href="https://github.com/mgravell/protobuf-net#advanced-subjects">protobuf-net 官方GitHub</a></p><h2>參考資料</h2><p><a href="http://larrynung.github.io/2016/08/23/protobuf-net-Serialize-DeSerialize-data/">Level up - protobuf-net - Serialize/DeSerialize data</a></p><p><a href="https://github.com/mgravell/protobuf-net">protobuf-net 官方GitHub</a></p><p><a href="https://github.com/google/protobuf">Google protobuf</a></p></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/protobuf-first-meet/protobuf-first-meet/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-66ec64b36522540f0ea8.js"],"app":["/app-c37cb832fa2bf360a726.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-2c58f41fde4ecaf283b9.js"],"component---src-pages-about-tsx":["/component---src-pages-about-tsx-5aa2d8f90c6c04d80e01.js"],"component---src-pages-friends-tsx":["/component---src-pages-friends-tsx-b24ff950306643fc510e.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-d702cdd1d4f1ec2f817a.js"],"component---src-pages-posts-tsx":["/component---src-pages-posts-tsx-91b117f33b87f9fae926.js"],"component---src-pages-tags-tsx":["/component---src-pages-tags-tsx-cf44fb007d1c0af5d3a9.js"],"component---src-posts-ecs-deploy-preparing-ecs-deploy-preparing-mdx":["/component---src-posts-ecs-deploy-preparing-ecs-deploy-preparing-mdx-83261c4537c9295dd744.js"],"component---src-posts-protobuf-first-meet-protobuf-first-meet-mdx":["/component---src-posts-protobuf-first-meet-protobuf-first-meet-mdx-5e0341cde81eb8187b21.js"],"component---src-posts-protobuf-serialize-and-deserialize-protobuf-serialize-and-deserialize-mdx":["/component---src-posts-protobuf-serialize-and-deserialize-protobuf-serialize-and-deserialize-mdx-7678852e51555d318927.js"],"component---src-posts-redis-data-types-redis-data-types-mdx":["/component---src-posts-redis-data-types-redis-data-types-mdx-bc1911b260a318ab2b47.js"],"component---src-posts-redis-pub-sub-application-notification-redis-pub-sub-application-notification-mdx":["/component---src-posts-redis-pub-sub-application-notification-redis-pub-sub-application-notification-mdx-dc33f1a672c356e598f7.js"]};/*]]>*/</script><script src="/polyfill-66ec64b36522540f0ea8.js" nomodule=""></script><script src="/component---src-posts-protobuf-first-meet-protobuf-first-meet-mdx-5e0341cde81eb8187b21.js" async=""></script><script src="/app-c37cb832fa2bf360a726.js" async=""></script><script src="/framework-fca5a6c89ebf46562859.js" async=""></script><script src="/webpack-runtime-f2e003e6be60fc7aa098.js" async=""></script></body></html>
