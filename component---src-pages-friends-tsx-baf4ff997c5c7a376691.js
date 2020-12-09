@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{XpLn:function(e,n,t){"use strict";t.r(n);var a=t("q1tI"),c=t.n(a),s=t("HHUu"),i=t("Hesl");n.default=function(e){return c.a.createElement(i.a,{title:"友站連結"},c.a.createElement("div",{className:s.gPl20Lg}))}}}]);
+//# sourceMappingURL=component---src-pages-friends-tsx-baf4ff997c5c7a376691.js.map
