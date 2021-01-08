@@ -1,1 +1,1 @@
-{"data":{"allMdx":{"distinct":["ansible","aws","cd","ci","deserialize","devops","ec2","ecs","frontend","iac","jenkins","layout","next.js","notify","protobuf","provisioned","pub","react","redis","selenium","serialize","sub","terraform"]}}}
+{"data":{"allMdx":{"distinct":["ansible","aws","cd","ci","deserialize","devops","ec2","ecs","elk","frontend","iac","jenkins","layout","next.js","notify","operation","protobuf","provisioned","pub","react","redis","selenium","serialize","sub","terraform"]}}}
