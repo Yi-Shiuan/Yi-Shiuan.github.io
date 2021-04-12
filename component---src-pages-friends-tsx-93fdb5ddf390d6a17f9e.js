@@ -1,2 +1,2 @@
 (window.webpackJsonp=window.webpackJsonp||[]).push([[11],{XpLn:function(e,n,t){"use strict";t.r(n);var a=t("q1tI"),c=t.n(a),s=t("HHUu"),i=t("Hesl");n.default=function(e){return c.a.createElement(i.a,{title:"友站連結"},c.a.createElement("div",{className:s.gPl20Lg}))}}}]);
-//# sourceMappingURL=component---src-pages-friends-tsx-6241a8c7917e3206f79f.js.map
+//# sourceMappingURL=component---src-pages-friends-tsx-93fdb5ddf390d6a17f9e.js.map
