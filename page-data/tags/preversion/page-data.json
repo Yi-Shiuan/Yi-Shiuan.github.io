@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-pages-tags-tsx",
+    "path": "/tags/preversion",
+    "result": {"data":{"allMdx":{"edges":[{"node":{"id":"052cdfeb-fc92-549e-aa5a-0725abb66307","frontmatter":{"title":"自建Elasticsearch 8.2","description":"這週在處理自建的elasticsearch相關的狀況，今天處理告一段落後來個小筆記未來遇到才不會又搞了老半天...","date":"2022-05-20"},"fields":{"path":"/2022/05/20/self-hosted-elasticsearch"},"fileAbsolutePath":"/Users/Yi-Shiuan/Documents/git/Blogger/src/posts/self-hosted-elasticsearch/index.mdx"}}]}},"pageContext":{"id":"preversion"}},
+    "staticQueryHashes": ["2069471281","2579648174","3564308881","3673915224"]}
