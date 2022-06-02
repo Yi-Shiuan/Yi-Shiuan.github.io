@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-pages-tags-tsx",
     "path": "/tags/arduino",
-    "result": {"data":{"allMdx":{"edges":[{"node":{"id":"2b1d4c9d-3948-578c-be1a-21a757755bfb","frontmatter":{"title":"使用platformio上傳arduino時出現錯誤代碼(0107)","description":"在網頁開發中，SSL憑證已經是一個不可或缺的一件事情！網路上可以找到許多免費的憑證使用，如let's encrypt、ZeroSSL 都可以幫你產生免費的憑證，唯一麻煩的事情是三個月就需要重新處理憑證問題，在雲端供應商中AWS有提供ACM微軟也有提供類似於ACM的服務， 只要你使用了這些雲端供應商就可以免費的為你產生憑證","date":"2022-06-01"},"fields":{"path":"/2022/06/01/arduino-use-platformio-upload-error"},"fileAbsolutePath":"/Users/Yi-Shiuan/Documents/git/Blogger/src/posts/arduino-use-platformio-upload-error/index.mdx"}}]}},"pageContext":{"id":"arduino"}},
+    "result": {"data":{"allMdx":{"edges":[{"node":{"id":"2b1d4c9d-3948-578c-be1a-21a757755bfb","frontmatter":{"title":"使用platformio上傳arduino時出現錯誤代碼(0107)","description":"第一次接觸arduino，很開心地寫下了一個閃爍板子上的LED程式碼後要上傳到板子，結果上傳時發生了錯誤 出現了Failed to write to target RAM (result was 0107)這樣的錯誤代碼，試了網路上很多的方式都沒有成功，最後發現了原來serial port 不正確...","date":"2022-06-01"},"fields":{"path":"/2022/06/01/arduino-use-platformio-upload-error"},"fileAbsolutePath":"/Users/Yi-Shiuan/Documents/git/Blogger/src/posts/arduino-use-platformio-upload-error/index.mdx"}}]}},"pageContext":{"id":"arduino"}},
     "staticQueryHashes": ["2069471281","2579648174","3564308881","3673915224"]}
