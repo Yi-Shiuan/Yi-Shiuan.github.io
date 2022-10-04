@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-pages-tags-tsx",
+    "path": "/tags/postgresql",
+    "result": {"data":{"allMdx":{"edges":[{"node":{"id":"6f4a3162-6752-58a7-989f-400c04275620","frontmatter":{"title":"Postgresql 新增或更新","description":"在SQL Server中有一個語法是merge的語法，他可以根據特定的條件執行特定的操作，如資料存在就更新不存在就新增。 但在Postgresql中，似乎沒有merge的語法可以使用...但在程式理先去得資料在判斷是否更新或新增這樣的情境容易導致一些後遺症.... 在google後，其實有很多方式但...嘗試後只有這個方法是可行的，所以在這邊筆記一下","date":"2022-10-04"},"fields":{"path":"/2022/10/04/postgresql-insert-or-update"},"fileAbsolutePath":"/Users/Yi-Shiuan/Documents/git/Blogger/src/posts/postgresql-insert-or-update/index.mdx"}}]}},"pageContext":{"id":"postgresql"}},
+    "staticQueryHashes": ["2069471281","2579648174","3564308881","3673915224"]}
