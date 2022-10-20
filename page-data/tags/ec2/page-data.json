@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-pages-tags-tsx",
-    "path": "/tags/ec2",
-    "result": {"data":{"allMdx":{"edges":[{"node":{"id":"ff06f0c8-ce30-5349-a3cb-8d9486624064","frontmatter":{"title":"如何讓AWS EC2開機後就能上線","description":"在雲端服務一定會遇到的是機器的擴展(scale out)與縮編(scale in)的問題，如果一個AutoScaling Group觸發了機器的成長時肯定是無法靠手動 的方式來安裝機器，所以必須要透過全資動畫的方式進行，這時候我一開始的想法是在AutoScaling發生的時候觸法Jenkins的Job來安裝系統， 但這有個問題是我整個aws的服務都必須依賴在Jenkins上，後來同事指導了一個做法只需要透過AWS的設定就可以自動裝機了！","date":"2020-12-09"},"fields":{"path":"/2020/12/09/ec2-provisioned-self-install"},"fileAbsolutePath":"/Users/Yi-Shiuan/Documents/git/Blogger/src/posts/ec2-provisioned-self-install/index.mdx"}}]}},"pageContext":{"id":"ec2"}},
-    "staticQueryHashes": ["2069471281","2579648174","3564308881","3673915224"]}

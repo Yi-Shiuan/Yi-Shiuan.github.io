@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-pages-tags-tsx",
-    "path": "/tags/esp",
-    "result": {"data":{"allMdx":{"edges":[{"node":{"id":"787e4452-769f-5cfe-b4f2-864bd0d30f3d","frontmatter":{"title":"使用Clion搭配platformio開發esp8266","description":"最近想把家中的電器可以跟apple homekit結合在一起省去一些麻煩順便可以帶來生活更好的狀態，但apple homekit的冷氣控制一個就要3700原， 對於家中有六台冷氣的我有點小貴，所以決定自己開發這樣的產品...順便也改造一下不太好用的窗簾機器人，讓他可以直接支援apple homekit，不需要再透過`捷徑`的方式來支援homekit\n在開始之前研究了一下許多arduino與Raspberry Pi兩者之間的選擇，發現了arduino在整個生態系來說完整不少，缺點是他基本上只支援C/C++的開發... Raspberry Pi 倒是可以使用.net或是node.js等等的語言，但許多的控制器或是傳感器支援的數量較少，並且價格也比較昂貴所以最後選擇了arduino， arduino中也有許多不同的板子，在選擇的時候的非常的困擾...後來我選擇了由樂鑫開發的ESP系列的板子好處是他已經內建了wifi功能， 所以可以直接使用不需要再加上wifi模組！","date":"2022-06-09"},"fields":{"path":"/2022/06/09/nodemcu-esp8266-platformio-with-clion"},"fileAbsolutePath":"/Users/Yi-Shiuan/Documents/git/Blogger/src/posts/nodemcu-esp8266-platformio-with-clion/index.mdx"}}]}},"pageContext":{"id":"esp"}},
-    "staticQueryHashes": ["2069471281","2579648174","3564308881","3673915224"]}

@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-pages-tags-tsx",
-    "path": "/tags/jenkins",
-    "result": {"data":{"allMdx":{"edges":[{"node":{"id":"4f115190-27de-564c-af7e-64fff2aed6c6","frontmatter":{"title":"透過Jenkins啟動Selenium Grid執行自動化測試","description":"QA測試當然不是只測試RD這次上線的範圍而已，而是把過去上線的功能都要在驗過一遍才能算是經過QA測試的版本，但是隨著時間的積累線上的系統越來越多 有時候QA無法透過手動的方式完成所有驗證，這時候都會導入自動畫測試selenium來協助QA做完系統的驗證，在目前我服務的公司把CD與自動化測試的部分做了整合， 當QAT部署完成後就會驅動QA的自動化驗證，但是當自動化驗證的Job越來越多一台機器已經很難在3-5分鐘內完成自動化測試怎麼辦？","date":"2020-09-06"},"fields":{"path":"/2020/09/06/jenkins-selenium-grid"},"fileAbsolutePath":"/Users/Yi-Shiuan/Documents/git/Blogger/src/posts/jenkins-selenium-grid/index.mdx"}}]}},"pageContext":{"id":"jenkins"}},
-    "staticQueryHashes": ["2069471281","2579648174","3564308881","3673915224"]}
