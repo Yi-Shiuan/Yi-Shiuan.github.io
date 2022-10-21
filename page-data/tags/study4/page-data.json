@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-pages-tags-tsx",
-    "path": "/tags/study4",
-    "result": {"data":{"allMdx":{"edges":[{"node":{"id":"3d6b36c4-8d2b-5cfd-af94-069d0bb7d958","frontmatter":{"title":"從黑暗時代到現代化的雲端部署與維運","description":"dotnetconf 2021 ＠ study4 從黑暗時代到現代化的雲端部署與維運","date":"2021-12-20"},"fields":{"path":"/2021/12/20/dotnetconf-study4-bruno"},"fileAbsolutePath":"/Users/brunojan/Documents/git/blogger/src/posts/dotnetconf-study4-bruno/index.mdx"}}]}},"pageContext":{"id":"study4"}},
-    "staticQueryHashes": ["2069471281","2579648174","3564308881","3673915224"]}

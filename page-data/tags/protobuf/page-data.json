@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-pages-tags-tsx",
-    "path": "/tags/protobuf",
-    "result": {"data":{"allMdx":{"edges":[{"node":{"id":"901b79d5-f50a-50ae-a822-62c0a860fb62","frontmatter":{"title":"[ProtoBuf] ProtoBuf Serialize 與 DeSerialize！","description":"這一篇應該是我ProtoBuf的系列文章第二篇，上一篇只簡單說了一些安裝方式與一些定義檔 的設定根本就不知道該如何使用這一個好用的序列化工具。依樣會是使用protobuf-net 這一個套件來做一個簡單的紀錄。","date":"2016-10-07"},"fields":{"path":"/2016/10/08/protobuf-serialize-and-deserialize"},"fileAbsolutePath":"/Users/brunojan/Documents/git/blogger/src/posts/protobuf-serialize-and-deserialize/index.mdx"}},{"node":{"id":"54799e9f-25ba-56ac-a506-ec1e56bb1739","frontmatter":{"title":"[ProtoBuf] 初次見面","description":"目前會採用ProtoBuf序列化是因為先前使用JSON有效能上的問題與在存取Redis上產生較高的延遲，所以改採用ProtoBuf來作為資料序列化與存放到Redis的主要格式。雖然在閱讀上需要自己寫小工具做轉譯，但在一般情況擁有較好的效能展現。","date":"2016-10-06"},"fields":{"path":"/2016/10/06/protobuf-first-meet"},"fileAbsolutePath":"/Users/brunojan/Documents/git/blogger/src/posts/protobuf-first-meet/index.mdx"}}]}},"pageContext":{"id":"protobuf"}},
-    "staticQueryHashes": ["2069471281","2579648174","3564308881","3673915224"]}
