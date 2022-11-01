@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkyi_shiuan_blogger=self.webpackChunkyi_shiuan_blogger||[]).push([[218],{3205:function(e,t,l){l.r(t);var a=l(5335),n=l(7294);t.default=function(e){return void 0===e.data?n.createElement(a.Z,null):n.createElement(a.Z,{title:"失聯！"},n.createElement("div",{className:"g-pl-20--lg"}))}}}]);
-//# sourceMappingURL=component---src-pages-404-tsx-d36196ff1feef8344d99.js.map
