@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-pages-tags-tsx",
-    "path": "/tags/elk",
-    "result": {"data":{"allMdx":{"edges":[{"node":{"id":"ef648683-ee3e-5072-a637-fe0c8cb2cb67","frontmatter":{"title":"Elasticsearch 效能調整與自動維運","description":"在Index Management中有個index templates的頁簽，在這裡可以改變一些index的行為或是屬性， 有些index屬性對於整個ELK的查詢或是機器的影響是很巨大的，當Log量越大的時候就需要改變一些設定， 尤其是放在雲端的ELK，如果使用越大的機器消費金額就會變得很可觀，在不是賺錢的機器上還是能省則省。","date":"2021-01-08"},"fields":{"path":"/2021/01/08/elasticsearch-tuning-and-auto-operation"},"fileAbsolutePath":"/Users/brunojan/Documents/git/blogger/src/posts/elasticsearch-tuning-and-auto-operation/index.mdx"}}]}},"pageContext":{"id":"elk"}},
-    "staticQueryHashes": ["2069471281","2579648174","3564308881","3673915224"]}
